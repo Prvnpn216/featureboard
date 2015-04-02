@@ -51,4 +51,14 @@ return Restangular.withConfig(function(RestangularConfigurer){
 })
 .factory('Login', function(LoginRestangular){
   return LoginRestangular.service('Login');//all this for adding capabilities to create new Login  
+})
+.factory('AfterLoginRestangular',function(Restangular){
+return Restangular.withConfig(function(RestangularConfigurer){
+  RestangularConfigurer.setRestangularFields({
+    id: '_id'//all this for changing _id to id
+  });
+ });
+})
+.factory('AfterLogin', function(AfterLoginRestangular){
+  return AfterLoginRestangular.service('AfterLogin');//all this for adding capabilities to create new Login  
 });

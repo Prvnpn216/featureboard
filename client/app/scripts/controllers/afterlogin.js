@@ -8,19 +8,24 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('AfterloginCtrl', function ($scope, $http, Login, $route, $rootScope) {
+  .controller('AfterloginCtrl', function ($scope, $http, AfterLogin, $location, $route, $rootScope) {
 
-    $scope.comments=Login.getList().$object;
+    $scope.comments=AfterLogin.getList().$object;
+    if(!($rootScope.email)){
+      alert('Please Login to view this page');
+      $location.url('/login');
+      return;
+    }
+    $scope.user = $rootScope.email.toString();
 
  $scope.submitcomment = function() {
-
- 		$http
+    		$http
                           ({
                               method: 'POST',
-                              url : 'http://localhost:3000/Login',
+                              url : 'http://localhost:3000/afterlogin',
                               data:{
-                                  Username:$scope.commenttxt,
-                                  password:'e@w.com'
+                                  Comment:$scope.commenttxt,
+                                  Email:$scope.user
                           }}).success(function() {
                               console.log('Success in fetching all users');
                               console.log($rootScope.email);

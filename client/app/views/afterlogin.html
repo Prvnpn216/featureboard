@@ -17,7 +17,10 @@
 	</thread>
 	<tbody>
 		<tr ng-repeat ="cmt in comments" >
-			<td>{{cmt.Username +'Comment By'+cmt.password}}</td>
+			<td><span style="font-size:20px">{{cmt.Comment}}</span> 
+				<span style="font-size:10px"><br /><p> Comment by </p></span>
+				<span style="color:#74B7F0">{{cmt.Email}}</span>
+			</td>
 		</tr>		
 	</tbody>
 </table>
